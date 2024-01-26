@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# A bash script that kills/stops a specified process
+# pgrep -f 7-highlander | xargs kill -9
+
+kill -9 "$(pgrep -f highlander)"
