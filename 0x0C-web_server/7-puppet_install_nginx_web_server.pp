@@ -16,7 +16,7 @@ exec {'Hello':
 }
 
 exec {'redirect_me':
-  command => 'sudo sed -i "/listen 80 default_server;/a \\\trewrite ^/redirect_me https://github.com/Dtikoli permanent;" /etc/nginx/sites-available/default',
+  command => 'sudo sed -i "/listen 80 default_server;/a \\\trewrite ^/redirect_me https://github.com/oussamazaima permanent;" /etc/nginx/sites-available/default',
   provider => shell,
 }
 
