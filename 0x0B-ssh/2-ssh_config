@@ -1,0 +1,3 @@
+# configure SSH configuration file to specified needs
+PasswordAuthentication no
+IdentityFile ~/.ssh/school
