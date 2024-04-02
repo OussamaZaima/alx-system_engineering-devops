@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# intall and configure web02 to be identical to web01
+# add a custom HTTP header named X-Served-By
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo mkdir -p /var/www/html
+sudo chmod -R 755 /var/www
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i "/listen 80 default_server;/a \\\tadd_header X-Served-By $HOSTNAME;\n\trewrite ^/redirect_me https://github.com/oussamazaima permanent;" /etc/nginx/sites-enabled/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sudo sed -i "/server_name _;/a \\\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html/404.html;\n\t\tinternal;\n\t}" /etc/nginx/sites-enabled/default
+sudo service nginx restart
