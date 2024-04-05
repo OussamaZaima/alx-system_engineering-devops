@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Bug to resolve: etc/sites-enabled/default is configured to listen to port 8080 instead of 80
+# Solution: create a symbolic link to forcefully replace the content of etc/sites-enabled/default
+# with the correct configuration found in /etc/nginx/sites-available/default
+# NB: The -f flag is used to overwrite the content of /etc/nginx/sites-available/default.
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
