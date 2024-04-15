@@ -1,4 +1,5 @@
-etting up firewall rules with logging and customization
+#!/usr/bin/env bash
+# Setting up firewall rules with logging and customization
 
 # Update package repositories
 sudo apt-get -y update
