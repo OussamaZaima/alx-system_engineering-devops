@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Setting up firewall rules with logging and customization
+
+# Update package repositories
+sudo apt-get -y update
+
+# Install UFW (Uncomplicated Firewall) if not already installed
+sudo apt-get -y install ufw
+
+# Enable UFW
+sudo ufw enable
+
+# Allow specific incoming traffic
+sudo ufw allow 22/tcp     # SSH
+sudo ufw allow 443/tcp    # HTTPS
+sudo ufw allow 80/tcp     # HTTP
+
+# Set default policies (deny incoming, allow outgoing)
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Configure UFW logging for troubleshooting
+sudo ufw logging on
+sudo ufw logging medium
+
+# Display the status of UFW rules with numbers for reference
+sudo ufw status numbered
